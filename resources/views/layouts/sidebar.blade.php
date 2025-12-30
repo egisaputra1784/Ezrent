@@ -39,6 +39,18 @@
             </li>
         @endif
 
+        {{-- MENU perusahaan --}}
+        @if (Auth::user()->role === 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('owner.index') }}">
+                    <i class="typcn typcn-th-large menu-icon"></i>
+
+
+                    <span class="menu-title">Perusahaan</span>
+                </a>
+            </li>
+        @endif
+
 
     </ul>
 </nav>
