@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\Superadmin\UserController;
@@ -80,4 +81,6 @@ Route::middleware(['auth', 'role:kasir'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('kasir.dashboard');
+
+        Route::resource('customer', CustomerController::class);
     });

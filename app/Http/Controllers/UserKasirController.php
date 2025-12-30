@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserKasirController extends Controller
@@ -25,7 +26,10 @@ class UserKasirController extends Controller
             'no_hp'    => 'required',
         ]);
 
+        $userLogin = Auth::user();
+
         User::create([
+            'owner_id' => $userLogin->owner_id,
             'nama'     => $request->nama,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
