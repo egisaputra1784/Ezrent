@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Superadmin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +30,13 @@ Route::middleware(['auth'])->get('/dashboard', [DashboardController::class, 'ind
 */
 Route::middleware(['auth', 'role:superadmin'])
     ->prefix('superadmin')
+    ->name('superadmin.')
     ->group(function () {
+
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('superadmin.dashboard');
+
+        Route::resource('users', UserController::class);
     });
 
 /*

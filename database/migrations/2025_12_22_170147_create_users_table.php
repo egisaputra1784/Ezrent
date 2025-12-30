@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('no_hp');
             $table->enum('role', ['superadmin', 'admin', 'owner', 'kasir']);
             $table->timestamps();
         });

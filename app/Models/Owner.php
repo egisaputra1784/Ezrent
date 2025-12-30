@@ -10,6 +10,11 @@ class Owner extends Model
     use HasFactory;
 
     protected $table = 'owner';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
+
+    protected $fillable = [
+        'nama_usaha',
+        'serial_number',
+        'status',
+        'expired_at',
+    ];
 }
