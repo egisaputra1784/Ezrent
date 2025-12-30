@@ -48,4 +48,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
 }

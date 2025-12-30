@@ -39,14 +39,22 @@
             </li>
         @endif
 
-        {{-- MENU perusahaan --}}
+        {{-- MENU PERUSAHAAN --}}
         @if (Auth::user()->role === 'admin')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('owner.index') }}">
                     <i class="typcn typcn-th-large menu-icon"></i>
-
-
                     <span class="menu-title">Perusahaan</span>
+                </a>
+            </li>
+        @endif
+
+        {{-- MENU OWNER --}}
+        @if (Auth::user()->role === 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user-owner.index') }}">
+                    <i class="typcn typcn-group menu-icon"></i>
+                    <span class="menu-title">Owner</span>
                 </a>
             </li>
         @endif

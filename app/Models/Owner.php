@@ -17,4 +17,9 @@ class Owner extends Model
         'status',
         'expired_at',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }
