@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             'nama'     => 'Super Admin',
             'email'    => 'superadmin@posrental.test',
             'password' => Hash::make('123456'),
+            'no_hp'    => '087895456212',
             'role'     => 'superadmin',
             'owner_id' => null,
         ]);
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
             'nama'     => 'Admin',
             'email'    => 'admin@posrental.test',
             'password' => Hash::make('123456'),
+            'no_hp'    => '087895456212',
             'role'     => 'admin',
             'owner_id' => null,
         ]);
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'nama'     => 'Owner Rental',
             'email'    => 'owner@posrental.test',
             'password' => Hash::make('123456'),
+            'no_hp'    => '087895456212',
             'role'     => 'owner',
             'owner_id' => $owner->id,
         ]);
@@ -59,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'nama'     => 'Kasir 1',
             'email'    => 'kasir@posrental.test',
             'password' => Hash::make('123456'),
+            'no_hp'    => '087895456212',
             'role'     => 'kasir',
             'owner_id' => $owner->id,
         ]);

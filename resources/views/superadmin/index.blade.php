@@ -46,6 +46,7 @@
                             <th width="60" class="text-center">No</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Kontak</th>
                             <th>Role</th>
                             <th width="120" class="text-center">Aksi</th>
                         </tr>
@@ -56,6 +57,7 @@
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $user->nama }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td><i class="typcn typcn-phone mr-1 text-success"></i> {{ $user->no_hp }}</td>
                                 <td>
                                     <span
                                         class="badge {{ $user->role === 'superadmin' ? 'badge-info' : 'badge-secondary' }} role-badge">
@@ -64,7 +66,7 @@
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-info btn-edit" data-id="{{ $user->id }}"
-                                        data-nama="{{ $user->nama }}" data-email="{{ $user->email }}"
+                                        data-nama="{{ $user->nama }}" data-email="{{ $user->email }}" data-nohp="{{ $user->no_hp }}"
                                         data-role="{{ $user->role }}" data-toggle="modal" data-target="#userModal">
                                         <i class="typcn typcn-edit"></i>
                                     </button>
@@ -101,7 +103,7 @@
             $('#modalTitle').text('Tambah User');
             $('#userForm').attr('action', '{{ route('superadmin.users.store') }}');
             $('#formMethod').val('POST');
-            $('#nama, #email, #password').val('');
+            $('#nama, #email, #password', '#no_hp').val('');
             $('.password-field').show();
         });
 
@@ -111,6 +113,7 @@
             $('#formMethod').val('PUT');
             $('#nama').val($(this).data('nama'));
             $('#email').val($(this).data('email'));
+            $('#no_hp').val($(this).data('nohp'));
             $('#role').val($(this).data('role'));
             $('#password').val('');
         });
