@@ -59,6 +59,16 @@
             </li>
         @endif
 
+        {{-- MENU OWNER --}}
+        @if (Auth::user()->role === 'owner')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user-kasir.index') }}">
+                    <i class="typcn typcn-group menu-icon"></i>
+                    <span class="menu-title">Kasir</span>
+                </a>
+            </li>
+        @endif
+
 
     </ul>
 </nav>

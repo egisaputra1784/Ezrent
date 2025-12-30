@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\Superadmin\UserController;
+use App\Http\Controllers\UserKasirController;
 use App\Http\Controllers\UserOwnerController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,8 @@ Route::middleware(['auth', 'role:owner'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('owner.dashboard');
+
+        Route::resource('user-kasir', UserKasirController::class);
     });
 
 /*
