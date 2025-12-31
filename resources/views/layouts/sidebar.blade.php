@@ -94,7 +94,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('produk.index') }}">
-                    <i class="typcn typcn-box-outline menu-icon"></i>
+                    <i class="typcn typcn-archive menu-icon"></i>
                     <span class="menu-title">Produk</span>
                 </a>
             </li>
