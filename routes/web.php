@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\Superadmin\UserController;
@@ -72,6 +73,8 @@ Route::middleware(['auth', 'role:owner'])
             ->name('owner.dashboard');
 
         Route::resource('user-kasir', UserKasirController::class);
+        Route::get('/laporan/transaksi', [LaporanController::class, 'transaksi'])
+            ->name('laporan.transaksi');
     });
 
 /*
