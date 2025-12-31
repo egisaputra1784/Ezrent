@@ -106,4 +106,23 @@ class TransaksiController extends Controller
 
         return back()->with('success', 'Transaksi berhasil dihapus');
     }
+
+    public function selesai($id)
+    {
+        $transaksi = Transaksi::with('produk')
+            ->where('owner_id', Auth::user()->owner_id)
+            ->findOrFail($id);
+
+        // ubah status transaksi
+        $transaksi->update([
+            'status' => 'selesai'
+        ]);
+
+        // balikin produk jadi tersedia
+        $transaksi->produk->update([
+            'status' => 'tersedia'
+        ]);
+
+        return back()->with('success', 'Transaksi berhasil diselesaikan');
+    }
 }

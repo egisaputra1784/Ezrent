@@ -75,6 +75,9 @@ Route::middleware(['auth', 'role:owner'])
         Route::resource('user-kasir', UserKasirController::class);
         Route::get('/laporan/transaksi', [LaporanController::class, 'transaksi'])
             ->name('laporan.transaksi');
+
+        Route::put('/transaksi/{id}/selesai', [TransaksiController::class, 'selesai'])
+            ->name('transaksi.selesai');
     });
 
 /*
