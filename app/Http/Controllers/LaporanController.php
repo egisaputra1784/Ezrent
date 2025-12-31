@@ -40,11 +40,7 @@ class LaporanController extends Controller
 
             // denda cuma kalau terlambat
             if ($tr->status === 'terlambat') {
-                $hariTerlambat = \Carbon\Carbon::parse($tr->tanggal_kembali)
-                    ->diffInDays(now());
-
-                $dendaPerHari = $hargaSewaMurni * ($tr->produk->denda / 100);
-                $totalDenda  += $dendaPerHari * max($hariTerlambat, 1);
+                $totalDenda = $tr->denda;
             }
         }
 
