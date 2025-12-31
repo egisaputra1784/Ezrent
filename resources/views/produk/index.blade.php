@@ -29,6 +29,9 @@
             <button class="btn btn-primary" data-toggle="modal" data-target="#produkModal">
                 <i class="typcn typcn-plus mr-1"></i> Tambah Produk
             </button>
+            <button class="btn btn-success" id="exportExcelBtn">
+                <i class="typcn typcn-download"></i> Export Excel
+            </button>
         </div>
 
         <div class="row">
@@ -120,6 +123,12 @@
                 placeholder: '-- Pilih Kategori --',
                 allowClear: true
             });
+        });
+        $('#exportExcelBtn').click(function(e) {
+            e.preventDefault();
+            if (confirm('Yakin ingin mengekspor data customer ke Excel?')) {
+                window.location.href = '{{ route('produk.export') }}';
+            }
         });
     </script>
 @endpush

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use App\Exports\ProdukExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -89,5 +91,11 @@ class ProdukController extends Controller
         $produk->delete();
 
         return back()->with('success', 'Produk berhasil dihapus');
+    }
+
+    public function export()
+    {
+        $fileName = 'produk_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new ProdukExport, $fileName);
     }
 }

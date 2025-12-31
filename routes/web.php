@@ -101,11 +101,12 @@ Route::middleware(['auth', 'role:kasir'])
             ->name('kasir.dashboard');
 
         Route::resource('customer', CustomerController::class)
-            ->except(['show']);;
+            ->except(['show']);
 
         Route::resource('kategori', KategoriController::class);
 
-        Route::resource('produk', ProdukController::class);
+        Route::resource('produk', ProdukController::class)
+            ->except(['show']);
 
         Route::resource('transaksi', TransaksiController::class);
 
@@ -114,4 +115,5 @@ Route::middleware(['auth', 'role:kasir'])
 
         Route::get('customer/export', [CustomerController::class, 'export'])->name('customer.export');
 
-    });
+        Route::get('produk/export', [ProdukController::class, 'export'])->name('produk.export');
+});
