@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\UserKasirExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 
 class UserKasirController extends Controller
@@ -69,5 +71,18 @@ class UserKasirController extends Controller
     {
         User::where('role', 'kasir')->findOrFail($id)->delete();
         return back()->with('success', 'User kasir berhasil dihapus');
+    }
+
+    public function exportExcel()
+    {
+        // dd('export function called');
+        $ownerId = Auth::user()->owner_id;
+        $filename = 'user-kasir-' . $ownerId . '.xlsx';
+        return Excel::download(new UserKasirExport, $filename);
+    }
+
+    public function show($id)
+    {
+        return redirect()->route('user-kasir.index');
     }
 }

@@ -72,7 +72,13 @@ Route::middleware(['auth', 'role:owner'])
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('owner.dashboard');
 
-        Route::resource('user-kasir', UserKasirController::class);
+        Route::get('/user-kasir/export', [UserKasirController::class, 'exportExcel'])
+            ->name('user-kasir.export');
+
+        Route::resource('user-kasir', UserKasirController::class)
+            ->except(['show']);
+
+
         Route::get('/laporan/transaksi', [LaporanController::class, 'transaksi'])
             ->name('laporan.transaksi');
 

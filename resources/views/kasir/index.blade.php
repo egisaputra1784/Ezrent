@@ -5,20 +5,27 @@
 @section('content')
     <div class="container-fluid">
 
+        {{-- Header --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
                 <h3 class="mb-1">Daftar User Kasir</h3>
                 <p class="text-muted small">Hanya menampilkan user dengan role Kasir</p>
             </div>
-            <button class="btn btn-primary btn-tambah" data-toggle="modal" data-target="#userKasirModal">
-                <i class="typcn typcn-plus"></i> Tambah User Kasir
-            </button>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary btn-tambah" data-toggle="modal" data-target="#userKasirModal">
+                    <i class="typcn typcn-plus"></i> Tambah User Kasir
+                </button>
+                <a href="{{ route('user-kasir.export') }}" class="btn btn-success">
+                    <i class="typcn typcn-document-text"></i> Export Excel
+                </a>
+            </div>
         </div>
 
+        {{-- Table --}}
         <div class="card shadow-sm">
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
-                    <thead>
+                    <thead class="thead-light">
                         <tr>
                             <th width="50" class="text-center">No</th>
                             <th>Nama</th>
@@ -37,10 +44,9 @@
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-info btn-edit" data-id="{{ $user->id }}"
                                         data-nama="{{ $user->nama }}" data-email="{{ $user->email }}"
-                                        data-nohp="{{ $user->no_hp }}" data-toggle="modal" data-target="#userKasirModal">
+                                        data-nohp="{{ $user->no_hp }}">
                                         <i class="typcn typcn-edit"></i>
                                     </button>
-
                                     <form action="{{ route('user-kasir.destroy', $user->id) }}" method="POST"
                                         class="d-inline" onsubmit="return confirm('Hapus user kasir ini?')">
                                         @csrf
@@ -71,36 +77,34 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            // Tambah User Kasir
             $('.btn-tambah').click(function() {
-                $('#modalTitle').text('Tambah User Kasir');
-                $('#userKasirForm').attr('action', '{{ route('user-kasir.store') }}');
-                $('#formMethod').val('POST');
-
-                $('#nama').val('');
-                $('#email').val('');
-                $('#password').val('');
-                $('#no_hp').val('');
-
-                $('#userKasirModal').modal('show');
+                resetForm('Tambah User Kasir', '{{ route('user-kasir.store') }}', 'POST');
             });
 
+            // Edit User Kasir
             $('.btn-edit').click(function() {
                 const id = $(this).data('id');
-                const nama = $(this).data('nama');
-                const email = $(this).data('email');
-                const nohp = $(this).data('nohp');
+                resetForm('Edit User Kasir', '{{ url('owner/user-kasir') }}/' + id, 'PUT', {
+                    nama: $(this).data('nama'),
+                    email: $(this).data('email'),
+                    no_hp: $(this).data('nohp')
+                });
+            });
 
-                $('#modalTitle').text('Edit User Kasir');
-                $('#userKasirForm').attr('action', '{{ url('owner/user-kasir') }}/' + $(this).data('id'));
-                $('#formMethod').val('PUT');
+            // Fungsi reset form modal
+            function resetForm(title, action, method, data = {}) {
+                $('#modalTitle').text(title);
+                $('#userKasirForm').attr('action', action);
+                $('#formMethod').val(method);
 
-                $('#nama').val(nama);
-                $('#email').val(email);
+                $('#nama').val(data.nama || '');
+                $('#email').val(data.email || '');
                 $('#password').val('');
-                $('#no_hp').val(nohp);
+                $('#no_hp').val(data.no_hp || '');
 
                 $('#userKasirModal').modal('show');
-            });
+            }
         });
     </script>
 @endpush
