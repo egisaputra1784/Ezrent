@@ -3,8 +3,11 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\Superadmin\UserController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserKasirController;
 use App\Http\Controllers\UserOwnerController;
 use Illuminate\Support\Facades\Route;
@@ -83,4 +86,10 @@ Route::middleware(['auth', 'role:kasir'])
             ->name('kasir.dashboard');
 
         Route::resource('customer', CustomerController::class);
+
+        Route::resource('kategori', KategoriController::class);
+
+        Route::resource('produk', ProdukController::class);
+
+        Route::resource('transaksi', TransaksiController::class);
     });

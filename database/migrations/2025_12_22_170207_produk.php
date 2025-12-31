@@ -13,18 +13,13 @@ return new class extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')
-                ->constrained('owner')
-                ->cascadeOnDelete();
-
-            $table->foreignId('kategori_id')
-                ->constrained('kategori')
-                ->cascadeOnDelete();
-
+            $table->foreignId('owner_id')->constrained('owner')->onDelete('cascade');
+            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
             $table->string('nama_produk');
-            $table->decimal('harga_sewa', 12, 2);
-            $table->integer('stok');
-            $table->enum('status', ['tersedia', 'disewa'])->default('tersedia');
+            $table->decimal('harga_sewa', 15, 2);
+            $table->integer('denda')->default('0');
+            $table->enum('status', ['tersedia', 'disewa']);
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

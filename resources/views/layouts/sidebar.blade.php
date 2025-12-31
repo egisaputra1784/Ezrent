@@ -59,7 +59,7 @@
             </li>
         @endif
 
-        {{-- MENU OWNER --}}
+        {{-- MENU KASIR --}}
         @if (Auth::user()->role === 'owner')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user-kasir.index') }}">
@@ -70,12 +70,43 @@
         @endif
 
 
-        {{-- MENU OWNER --}}
+        {{-- MENU CUSTOMER --}}
         @if (Auth::user()->role === 'kasir')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('customer.index') }}">
                     <i class="typcn typcn-group menu-icon"></i>
                     <span class="menu-title">Customer</span>
+                </a>
+            </li>
+        @endif
+
+        {{-- MENU KATEGORI --}}
+        @if (Auth::user()->role === 'kasir')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('kategori.index') }}">
+                    <i class="typcn typcn-group menu-icon"></i>
+                    <span class="menu-title">Kategori</span>
+                </a>
+            </li>
+        @endif
+
+        {{-- MENU PRODUK --}}
+        @if (Auth::user()->role === 'kasir')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('produk.index') }}">
+                    <i class="typcn typcn-group menu-icon"></i>
+                    <span class="menu-title">Produk</span>
+                </a>
+            </li>
+        @endif
+
+
+        {{-- MENU TRANSAKSI --}}
+        @if (Auth::user()->role === 'kasir')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('transaksi.index') }}">
+                    <i class="typcn typcn-group menu-icon"></i>
+                    <span class="menu-title">Transaksi</span>
                 </a>
             </li>
         @endif

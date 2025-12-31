@@ -22,6 +22,8 @@
         href="{{ asset('celestialAdmin-free-admin-template-main/template') }}/images/favicon.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     @stack('css')
 </head>
@@ -104,6 +106,9 @@
         src="{{ asset('celestialAdmin-free-admin-template-main/template') }}/vendors/progressbar.js/progressbar.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 
     <!-- End plugin js for this page -->

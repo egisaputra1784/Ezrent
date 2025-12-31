@@ -5,22 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Owner extends Model
+class Kategori extends Model
 {
     use HasFactory;
 
-    protected $table = 'owner';
+    protected $table = 'kategori';
 
     protected $fillable = [
-        'nama_usaha',
-        'serial_number',
-        'status',
-        'expired_at',
+        'owner_id',
+        'nama_kategori',
     ];
 
-    public function users()
+    public function owner()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Owner::class);
     }
 
     public function produk()
