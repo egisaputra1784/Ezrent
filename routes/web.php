@@ -76,7 +76,11 @@ Route::middleware(['auth', 'role:owner'])
         Route::get('/laporan/transaksi', [LaporanController::class, 'transaksi'])
             ->name('laporan.transaksi');
 
+        Route::get('/laporan/transaksi/excel', [LaporanController::class, 'exportExcel'])
+            ->name('laporan.transaksi.excel');
 
+        Route::get('/laporan/transaksi/pdf', [LaporanController::class, 'exportPdf'])
+            ->name('laporan.transaksi.pdf');
     });
 
 /*

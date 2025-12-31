@@ -6,19 +6,19 @@
     <div class="container-fluid">
 
         {{-- FILTER --}}
-        <div class="card mb-4 shadow-sm">
+        <div class="card shadow-sm mb-4">
             <div class="card-body">
                 <form method="GET" class="row align-items-end">
                     <div class="col-md-3">
-                        <label class="text-muted small">Dari Tanggal</label>
+                        <label class="text-muted small mb-1">Dari Tanggal</label>
                         <input type="date" name="from" class="form-control" value="{{ request('from') }}">
                     </div>
                     <div class="col-md-3">
-                        <label class="text-muted small">Sampai Tanggal</label>
+                        <label class="text-muted small mb-1">Sampai Tanggal</label>
                         <input type="date" name="to" class="form-control" value="{{ request('to') }}">
                     </div>
                     <div class="col-md-3">
-                        <label class="text-muted small">Status</label>
+                        <label class="text-muted small mb-1">Status</label>
                         <select name="status" class="form-control">
                             <option value="">Semua Status</option>
                             <option value="aktif" {{ request('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
@@ -36,22 +36,35 @@
             </div>
         </div>
 
+        {{-- EXPORT --}}
+        <div class="d-flex mb-4">
+            <a href="{{ route('laporan.transaksi.excel', request()->all()) }}" class="btn btn-success mr-2"
+                onclick="return confirmExport()">
+                <i class="typcn typcn-document-text"></i> Excel
+            </a>
+
+            <a href="{{ route('laporan.transaksi.pdf', request()->all()) }}" class="btn btn-danger"
+                onclick="return confirmExportPdf()">
+                <i class="typcn typcn-document"></i> PDF
+            </a>
+        </div>
+
         {{-- SUMMARY --}}
         <div class="row mb-4">
             <div class="col-md-3">
-                <div class="card border-left-primary shadow-sm">
+                <div class="card shadow-sm border-left-primary">
                     <div class="card-body">
                         <small class="text-muted">Total Transaksi</small>
-                        <h4 class="mb-0">{{ $totalTransaksi }}</h4>
+                        <h4 class="font-weight-bold mb-0">{{ $totalTransaksi }}</h4>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card border-left-success shadow-sm">
+                <div class="card shadow-sm border-left-success">
                     <div class="card-body">
                         <small class="text-muted">Total Sewa</small>
-                        <h4 class="mb-0 text-success">
+                        <h4 class="font-weight-bold text-success mb-0">
                             Rp {{ number_format($totalSewaMurni, 0, ',', '.') }}
                         </h4>
                     </div>
@@ -59,10 +72,10 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card border-left-warning shadow-sm">
+                <div class="card shadow-sm border-left-warning">
                     <div class="card-body">
                         <small class="text-muted">Total Denda</small>
-                        <h4 class="mb-0 text-warning">
+                        <h4 class="font-weight-bold text-warning mb-0">
                             Rp {{ number_format($totalDenda, 0, ',', '.') }}
                         </h4>
                     </div>
@@ -70,10 +83,10 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card border-left-dark shadow-sm">
+                <div class="card shadow-sm border-left-dark">
                     <div class="card-body">
                         <small class="text-muted">Total Pendapatan</small>
-                        <h4 class="mb-0">
+                        <h4 class="font-weight-bold mb-0">
                             Rp {{ number_format($totalPendapatan, 0, ',', '.') }}
                         </h4>
                     </div>
@@ -83,8 +96,8 @@
 
         {{-- TABLE --}}
         <div class="card shadow-sm">
-            <div class="card-header">
-                <h6 class="mb-0">Data Transaksi</h6>
+            <div class="card-header bg-white">
+                <h6 class="mb-0 font-weight-bold">Data Transaksi</h6>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
@@ -105,9 +118,7 @@
                                 <td>{{ \Carbon\Carbon::parse($tr->tanggal_sewa)->format('d M Y') }}</td>
                                 <td>{{ $tr->customer->nama }}</td>
                                 <td>{{ $tr->produk->nama_produk }}</td>
-                                <td>
-                                    Rp {{ number_format($tr->harga, 0, ',', '.') }}
-                                </td>
+                                <td>Rp {{ number_format($tr->harga, 0, ',', '.') }}</td>
                                 <td>
                                     <span
                                         class="badge
