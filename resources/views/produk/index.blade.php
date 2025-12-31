@@ -2,6 +2,24 @@
 
 @section('title', 'Manajemen Produk')
 
+@push('css')
+    <style>
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px);
+            /* sama kayak .form-control */
+            padding: 0.375rem 0.75rem;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 1.5;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100%;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -30,7 +48,7 @@
                             <p class="mb-1"><strong>Kategori:</strong> {{ $produk->kategori?->nama_kategori ?? '-' }}</p>
                             <p class="mb-1"><strong>Harga sewa:</strong> Rp
                                 {{ number_format($produk->harga_sewa, 0, ',', '.') }}</p>
-                               <p class="mb-1"><strong>Denda:</strong> {{ $produk->denda, 0, }}%</p>
+                            <p class="mb-1"><strong>Denda:</strong> {{ $produk->denda, 0 }}%</p>
 
                             <span
                                 class="badge {{ $produk->status === 'tersedia' ? 'badge-success' : 'badge-warning' }} mb-2">
@@ -95,10 +113,13 @@
                     $(this).find('p').first().text().toLowerCase().indexOf(value) > -1);
             });
         });
-        $('#kategori_id').select2({
-            dropdownParent: $('#produkModal'), // biar dropdown muncul di modal
-            width: '100%',
-            placeholder: '-- Pilih Kategori --'
+        $('#produkModal').on('shown.bs.modal', function() {
+            $('#kategori_id').select2({
+                dropdownParent: $('#produkModal'),
+                width: '100%',
+                placeholder: '-- Pilih Kategori --',
+                allowClear: true
+            });
         });
     </script>
 @endpush

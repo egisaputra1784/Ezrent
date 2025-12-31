@@ -2,6 +2,24 @@
 
 @section('title', 'Manajemen User Owner')
 
+@push('css')
+    <style>
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px);
+            /* sama kayak .form-control */
+            padding: 0.375rem 0.75rem;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 1.5;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100%;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -93,7 +111,15 @@
             $('#email').val($(this).data('email'));
             $('#password').val(''); // kosongkan password saat edit
             $('#no_hp').val($(this).data('nohp'));
-            $('#owner_id').val($(this).data('owner'));
+            $('#owner_id').val($(this).data('owner')).trigger('change');
+        });
+
+        $('#userOwnerModal').on('shown.bs.modal', function() {
+            $('#owner_id').select2({
+                dropdownParent: $('#userOwnerModal'),
+                width: '100%',
+                placeholder: '-- Pilih Perusahaan --'
+            });
         });
     </script>
 @endpush

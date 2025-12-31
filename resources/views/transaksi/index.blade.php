@@ -2,6 +2,24 @@
 
 @section('title', 'Manajemen Transaksi')
 
+@push('css')
+    <style>
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px);
+            /* sama kayak .form-control */
+            padding: 0.375rem 0.75rem;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 1.5;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100%;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -107,15 +125,6 @@
                                                 </button>
                                             </form>
                                         @endif
-
-                                        <form action="{{ route('transaksi.destroy', $tr->id) }}" method="POST"
-                                            onsubmit="return confirm('Hapus transaksi ini?')" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-outline-danger">
-                                                <i class="typcn typcn-trash"></i>
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @empty
@@ -162,5 +171,12 @@
         }
 
         $('[name=produk_id], [name=tanggal_sewa], [name=tanggal_kembali]').on('change', hitungTotal);
+
+        $('#transaksiModal').on('shown.bs.modal', function() {
+            $('.select2').select2({
+                width: '100%',
+                dropdownParent: $('#transaksiModal')
+            });
+        });
     </script>
 @endpush

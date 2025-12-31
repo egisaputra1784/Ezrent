@@ -22,12 +22,13 @@
                         {{-- Owner Usaha --}}
                         <div class="col-md-12 mb-3">
                             <label class="form-label">Owner Usaha</label>
-                            <select name="owner_id" id="owner_id" class="form-control" required>
+                            <select name="owner_id" id="owner_id" class="form-control select2" required>
                                 <option value="">-- Pilih Perusahaan --</option>
                                 @foreach ($owners as $owner)
                                     <option value="{{ $owner->id }}">{{ $owner->nama_usaha }}</option>
                                 @endforeach
                             </select>
+
                         </div>
 
                         {{-- Nama User --}}

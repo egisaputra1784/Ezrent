@@ -21,7 +21,7 @@
                         {{-- Customer --}}
                         <div class="col-md-12 mb-3">
                             <label>Customer</label>
-                            <select name="customer_id" class="form-control" required>
+                            <select name="customer_id" class="form-control select2" required>
                                 <option value="">-- Pilih Customer --</option>
                                 @foreach ($customers as $c)
                                     <option value="{{ $c->id }}">{{ $c->nama }}</option>
@@ -32,15 +32,15 @@
                         {{-- Produk --}}
                         <div class="col-md-12 mb-3">
                             <label>Produk</label>
-                            <select name="produk_id" class="form-control" required>
+                            <select name="produk_id" class="form-control select2" required>
                                 <option value="">-- Pilih Produk --</option>
                                 @foreach ($produks as $p)
                                     <option value="{{ $p->id }}" data-harga="{{ $p->harga_sewa }}">
                                         {{ $p->nama_produk }} (Rp {{ number_format($p->harga_sewa, 0, ',', '.') }})
                                     </option>
                                 @endforeach
-
                             </select>
+
                         </div>
 
                         {{-- Harga Sewa --}}
