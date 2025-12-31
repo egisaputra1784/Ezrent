@@ -15,9 +15,9 @@
                 <button class="btn btn-primary btn-tambah" data-toggle="modal" data-target="#userKasirModal">
                     <i class="typcn typcn-plus"></i> Tambah User Kasir
                 </button>
-                <a href="{{ route('user-kasir.export') }}" class="btn btn-success">
-                    <i class="typcn typcn-document-text"></i> Export Excel
-                </a>
+                <button class="btn btn-success" id="exportExcelBtn">
+                    <i class="typcn typcn-download"></i> Export Excel
+                </button>
             </div>
         </div>
 
@@ -104,6 +104,12 @@
                 $('#no_hp').val(data.no_hp || '');
 
                 $('#userKasirModal').modal('show');
+            }
+        });
+        $('#exportExcelBtn').click(function(e) {
+            e.preventDefault();
+            if (confirm('Yakin ingin mengekspor data customer ke Excel?')) {
+                window.location.href = '{{ route('user-kasir.export') }}';
             }
         });
     </script>

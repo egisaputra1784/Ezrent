@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Exports\CustomerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -63,5 +65,11 @@ class CustomerController extends Controller
         $customer->delete();
 
         return back()->with('success', 'Customer berhasil dihapus');
+    }
+
+    public function export()
+    {
+        $fileName = 'customers_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new CustomerExport, $fileName);
     }
 }

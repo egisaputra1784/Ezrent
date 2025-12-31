@@ -10,21 +10,26 @@
                 <h3 class="mb-1">Daftar Customer</h3>
                 <p class="text-muted small">Data customer milik perusahaan Anda</p>
             </div>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#customerModal">
-                <i class="typcn typcn-plus"></i> Tambah Customer
-            </button>
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary btn-tambah" data-toggle="modal" data-target="#customerModal">
+                    <i class="typcn typcn-plus"></i> Tambah Customer
+                </button>
+                <button class="btn btn-success" id="exportExcelBtn">
+                    <i class="typcn typcn-download"></i> Export Excel
+                </button>
+            </div>
         </div>
 
         <div class="card shadow-sm">
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
-                    <thead>
+                <table class="table table-hover mb-0 text-center align-middle">
+                    <thead class="table-light">
                         <tr>
                             <th width="50">No</th>
                             <th>Nama</th>
                             <th>No HP</th>
                             <th>Alamat</th>
-                            <th width="120">Aksi</th>
+                            <th width="150">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,7 +44,7 @@
                                         data-nama="{{ $customer->nama }}" data-nohp="{{ $customer->no_hp }}"
                                         data-alamat="{{ $customer->alamat }}" data-toggle="modal"
                                         data-target="#customerModal">
-                                        <i class="typcn typcn-edit"></i>
+                                        <i class="typcn typcn-edit"></i> Edit
                                     </button>
 
                                     <form action="{{ route('customer.destroy', $customer->id) }}" method="POST"
@@ -47,7 +52,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-sm btn-danger">
-                                            <i class="typcn typcn-trash"></i>
+                                            <i class="typcn typcn-trash"></i> Hapus
                                         </button>
                                     </form>
                                 </td>
@@ -70,6 +75,7 @@
 
 @push('scripts')
     <script>
+        // Tombol Edit
         $('.btn-edit').click(function() {
             $('#modalTitle').text('Edit Customer');
             $('#customerForm').attr('action', '{{ url('kasir/customer') }}/' + $(this).data('id'));
@@ -80,6 +86,7 @@
             $('#alamat').val($(this).data('alamat'));
         });
 
+        // Tombol Tambah
         $('.btn-tambah').click(function() {
             $('#modalTitle').text('Tambah Customer');
             $('#customerForm').attr('action', '{{ route('customer.store') }}');
@@ -88,6 +95,14 @@
             $('#nama').val('');
             $('#no_hp').val('');
             $('#alamat').val('');
+        });
+
+        // Konfirmasi Export Excel
+        $('#exportExcelBtn').click(function(e) {
+            e.preventDefault();
+            if (confirm('Yakin ingin mengekspor data customer ke Excel?')) {
+                window.location.href = '{{ route('customer.export') }}';
+            }
         });
     </script>
 @endpush

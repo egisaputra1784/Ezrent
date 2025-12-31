@@ -80,9 +80,4 @@ class UserKasirController extends Controller
         $filename = 'user-kasir-' . $ownerId . '.xlsx';
         return Excel::download(new UserKasirExport, $filename);
     }
-
-    public function show($id)
-    {
-        return redirect()->route('user-kasir.index');
-    }
 }

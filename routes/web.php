@@ -100,7 +100,8 @@ Route::middleware(['auth', 'role:kasir'])
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('kasir.dashboard');
 
-        Route::resource('customer', CustomerController::class);
+        Route::resource('customer', CustomerController::class)
+            ->except(['show']);;
 
         Route::resource('kategori', KategoriController::class);
 
@@ -110,4 +111,7 @@ Route::middleware(['auth', 'role:kasir'])
 
         Route::put('/transaksi/{id}/selesai', [TransaksiController::class, 'selesai'])
             ->name('transaksi.selesai');
+
+        Route::get('customer/export', [CustomerController::class, 'export'])->name('customer.export');
+
     });
