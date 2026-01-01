@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <h6>Total Perusahaan</h6>
                     <h2 class="font-weight-bold">{{ $totalOwner }}</h2>
-                    <small>Owner terdaftar</small>
+                    <small>Perusahaan terdaftar</small>
                 </div>
             </div>
         </div>
