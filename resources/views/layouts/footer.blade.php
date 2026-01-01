@@ -1,10 +1,26 @@
-<footer class="footer">
-    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © <a
-                href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com</a>
-            2020</span>
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Free <a
-                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard
-            </a>templates from Bootstrapdash.com</span>
+@push('css')
+    <style>
+        .footer {
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .footer strong {
+            color: #4B49AC;
+            /* warna primary Celestial */
+        }
+    </style>
+@endpush
+
+<footer class="footer py-3">
+    <div class="container-fluid">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center small text-muted">
+            <div>
+                © {{ date('Y') }} <strong>EZRent</strong>. All rights reserved.
+            </div>
+            <div class="mt-2 mt-sm-0">
+                Built with ❤️ by <span class="font-weight-bold">EZRent</span>
+            </div>
+        </div>
     </div>
 </footer>
