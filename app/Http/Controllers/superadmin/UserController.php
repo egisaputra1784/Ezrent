@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\UserAdminExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -97,5 +99,10 @@ class UserController extends Controller
         $user->delete();
 
         return back()->with('success', 'User berhasil dihapus');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UserAdminExport, 'user-admin.xlsx');
     }
 }

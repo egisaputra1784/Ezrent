@@ -44,7 +44,11 @@ Route::middleware(['auth', 'role:superadmin'])
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('superadmin.dashboard');
 
-        Route::resource('users', UserController::class);
+        Route::resource('users', UserController::class)
+            ->except(['show']);
+
+        Route::get('/superadmin/users/export',[UserController::class, 'export'])
+        ->name('superadmin.users.export');
     });
 
 /*
