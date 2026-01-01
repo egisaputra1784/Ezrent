@@ -62,7 +62,7 @@
                                     <span class="input-group-text"><i class="typcn typcn-warning-outline"></i></span>
                                 </div>
                                 <input type="number" name="denda" id="denda" class="form-control"
-                                    placeholder="Denda" required>
+                                    placeholder="Denda dalam %" required>     
                             </div>
                         </div>
 
