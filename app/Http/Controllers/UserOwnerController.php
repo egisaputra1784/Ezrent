@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\UserOwnerExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class UserOwnerController extends Controller
 {
@@ -65,5 +68,9 @@ class UserOwnerController extends Controller
     {
         User::where('role', 'owner')->findOrFail($id)->delete();
         return back()->with('success', 'User owner berhasil dihapus');
+    }
+    public function export()
+    {
+        return Excel::download(new UserOwnerExport, 'user-owner.xlsx');
     }
 }

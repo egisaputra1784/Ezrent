@@ -63,12 +63,14 @@ Route::middleware(['auth', 'role:admin'])
             ->name('admin.dashboard');
         Route::resource('owner', OwnerController::class)
             ->except(['show']);
-        Route::resource('user-owner', UserOwnerController::class);
+        Route::resource('user-owner', UserOwnerController::class)
+            ->except(['show']);
 
-        Route::get(
-            '/admin/owner/export',
-            [OwnerController::class, 'export']
-        )->name('owner.export');
+        Route::get('/admin/owner/export', [OwnerController::class, 'export'])
+            ->name('owner.export');
+
+        Route::get('/admin/user-owner/export', [UserOwnerController::class, 'export'])
+            ->name('user-owner.export');
     });
 
 /*
