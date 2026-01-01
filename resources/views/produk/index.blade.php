@@ -126,7 +126,7 @@
         });
         $('#exportExcelBtn').click(function(e) {
             e.preventDefault();
-            if (confirm('Yakin ingin mengekspor data customer ke Excel?')) {
+            if (confirm('Yakin ingin mengekspor data Produk ke Excel?')) {
                 window.location.href = '{{ route('produk.export') }}';
             }
         });

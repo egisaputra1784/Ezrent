@@ -47,8 +47,8 @@ Route::middleware(['auth', 'role:superadmin'])
         Route::resource('users', UserController::class)
             ->except(['show']);
 
-        Route::get('/superadmin/users/export',[UserController::class, 'export'])
-        ->name('superadmin.users.export');
+        Route::get('/superadmin/users/export', [UserController::class, 'export'])
+            ->name('superadmin.users.export');
     });
 
 /*
@@ -61,8 +61,14 @@ Route::middleware(['auth', 'role:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('admin.dashboard');
-        Route::resource('owner', OwnerController::class);
+        Route::resource('owner', OwnerController::class)
+            ->except(['show']);
         Route::resource('user-owner', UserOwnerController::class);
+
+        Route::get(
+            '/admin/owner/export',
+            [OwnerController::class, 'export']
+        )->name('owner.export');
     });
 
 /*

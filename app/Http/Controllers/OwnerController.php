@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use App\Exports\OwnerExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
@@ -88,5 +90,9 @@ class OwnerController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Nama usaha berhasil diperbarui 🎉');
+    }
+    public function export()
+    {
+        return Excel::download(new OwnerExport, 'data-owner.xlsx');
     }
 }
