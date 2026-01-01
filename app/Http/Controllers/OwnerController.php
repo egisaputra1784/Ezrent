@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
@@ -67,5 +68,25 @@ class OwnerController extends Controller
         $owner->delete();
 
         return redirect()->back()->with('success', 'Owner berhasil dihapus 🗑️');
+    }
+
+    public function updateNavbar(Request $request)
+    {
+        $user = Auth::user();
+
+        // pastikan cuma owner yang bisa update
+        if (!$user->owner) {
+            return redirect()->back()->with('error', 'Tidak punya izin untuk mengubah ini.');
+        }
+
+        $request->validate([
+            'nama_usaha' => 'required|string|max:255',
+        ]);
+
+        $user->owner->update([
+            'nama_usaha' => $request->nama_usaha,
+        ]);
+
+        return redirect()->back()->with('success', 'Nama usaha berhasil diperbarui 🎉');
     }
 }

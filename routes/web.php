@@ -87,6 +87,8 @@ Route::middleware(['auth', 'role:owner'])
 
         Route::get('/laporan/transaksi/pdf', [LaporanController::class, 'exportPdf'])
             ->name('laporan.transaksi.pdf');
+
+        Route::put('owner/update-navbar', [OwnerController::class, 'updateNavbar'])->name('owner.updateNavbar')->middleware('auth');
     });
 
 /*
@@ -116,4 +118,4 @@ Route::middleware(['auth', 'role:kasir'])
         Route::get('customer/export', [CustomerController::class, 'export'])->name('customer.export');
 
         Route::get('produk/export', [ProdukController::class, 'export'])->name('produk.export');
-});
+    });
