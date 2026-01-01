@@ -4,10 +4,19 @@
         {{-- LEFT : BRAND --}}
         <div class="d-flex align-items-center px-3" style="min-width:220px;">
             <a class="navbar-brand d-flex align-items-center mb-0" href="{{ route('dashboard') }}">
-                <i class="typcn typcn-archive text-primary mr-2" style="font-size:1.4rem;"></i>
+                {{-- Ganti typcn icon dengan logo --}}
+                <img src="{{ asset('image/logo-baru.png') }}" alt="EZRent Logo"
+                    style="
+                                height:40px;
+                                width:auto;
+                                margin-right:10px;
+                                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35))
+                                drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+                        ">
                 <span class="font-weight-bold">EZRent</span>
             </a>
         </div>
+
 
         {{-- CENTER : NAMA PERUSAHAAN --}}
         <div class="flex-grow-1 d-flex justify-content-center">

@@ -19,7 +19,7 @@
         href="{{ asset('celestialAdmin-free-admin-template-main/template') }}/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon"
-        href="{{ asset('celestialAdmin-free-admin-template-main/template') }}/images/favicon.png" />
+        href="{{ asset('image/logo-baru.png') }}" />
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
